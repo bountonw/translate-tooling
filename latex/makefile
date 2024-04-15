@@ -17,7 +17,7 @@ DICDIR = ./dictionaries
 # Html directory
 HTMDIR = ./html
 # Font directory
-FNTDIR = ../../th/assets/fonts
+FNTDIR = ../th/assets/fonts
 # Ebooks directory
 EBKDIR = ./ebooks
 # Preprocessed directory
@@ -167,7 +167,7 @@ $(TEXDIR)/%.tex : $(PREDIR)/%.md $(TPLDIR)/chapter.tex $(FILDIR)/inline-latex.hs
 	  --template=$(TPLDIR)/chapter.tex \
 	  --lua-filter $(FILDIR)/remove-paragraph-code-headings.lua \
 	  --lua-filter $(FILDIR)/transform-poetry.lua \
-	  --variable=modified:"$(shell git log -n 1 --pretty=format:%cd --date=format:"%Y-%m-%d at %H:%M" $(SRCDIR)/$*.md)" \
+	  --variable=modified:"$(shell cd $(SRCDIR) && git log -n 1 --pretty=format:%cd --date=format:"%Y-%m-%d at %H:%M" $*.md)" \
 	| \
 	swath \
 	  -b "|" \
