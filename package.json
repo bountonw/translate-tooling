@@ -4,7 +4,7 @@
     "node": "18.19"
   },
   "scripts": {
-    "lint": ".tooling/markdownlint/index.js",
+    "lint": "./markdownlint/index.js ../",
     "lint-frontmatter": "remark --frail ../"
   },
   "devDependencies": {

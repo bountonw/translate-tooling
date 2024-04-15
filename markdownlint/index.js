@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-process.cwd("../");
+process.chdir("../");
 
 import { globby } from "globby";
 import markdownlint from "markdownlint";
