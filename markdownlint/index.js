@@ -12,6 +12,7 @@ const GLOBAL_CONFIG = {
   "no-duplicate-heading": false,
   "no-inline-html": false,
   "no-trailing-punctuation": false,
+  "no-blanks-blockquote": false,
   "single-trailing-newline": false,
   "heading-style": {
     style: "atx",

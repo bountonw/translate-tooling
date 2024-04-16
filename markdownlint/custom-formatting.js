@@ -57,7 +57,7 @@ const customFormattingRules = [
         const lineIndex = lines.findIndex((l) => l === line);
         const nextLine = lines[lineIndex + 1] || lines[lineIndex + 2];
         const isFollowingLinePoetry =
-          nextLine && nextLine.search(/^(>\s|\s{4,}\S+)/) === 0;
+          nextLine && nextLine.search(/^(>(\s|$)|\s{4,}\S+)/) === 0;
         return isFollowingLinePoetry ||
           line.search(/\{\w+ \d{1,3}\.\d{1,2}\}$/) >= 0
           ? -1
