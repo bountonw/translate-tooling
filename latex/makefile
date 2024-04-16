@@ -25,7 +25,7 @@ PREDIR = ./preprocessed
 # Graphs directory
 GPHDIR = ./graphs
 # Draft output directory
-LBFDIR = ./lbf
+ICMLDIR = ./icml
 
 #==[ FILE LISTS ]===============================================================
 
@@ -77,7 +77,7 @@ clobber:
 	rm -rf $(DFTDIR)
 	rm -rf $(HTMDIR)
 	rm -rf $(EBKDIR)
-	rm -rf $(LBFDIR)
+	rm -rf $(ICMLDIR)
 
 #==[ PREPROCESSING: TEXT -> MARKDOWN ]==========================================
 
@@ -201,13 +201,13 @@ $(DFTDIR)/%.pdf : $(TEXDIR)/%.tex $(TPLDIR)/chapter.tex $(TPLDIR)/draft.tex
 	  --template=$(TPLDIR)/draft.tex \
 	  --output $(DFTDIR)/$*.pdf
 
-#==[ LBF ICML - SINGLE CHAPTER ]===============================================
+#==[ ICML - SINGLE CHAPTER ]===============================================
 
-# (LBF-only) This target generates the ICML files for a single chapter; its
-# prerequisites are the tex source for the chapter.
+# This target generates the ICML files for a single chapter; its prerequisites
+# are the tex source for the chapter.
 
-# usage: make lbf/filename.icml
-$(LBFDIR)/%.icml:
+# usage: make icml/filename.icml
+$(ICMLDIR)/%.icml:
 	mkdir -p $(PREDIR)/$(shell dirname $*)	
 	cat $(SRCDIR)/$(shell dirname $(shell dirname $*))/metadata.yaml $(SRCDIR)/$*.md \
   | \
@@ -217,9 +217,9 @@ $(LBFDIR)/%.icml:
 	  --to markdown \
 	  --standalone \
 	  --variable=this:$* \
-	  --template=$(TPLDIR)/chapter-lbf.md \
+	  --template=$(TPLDIR)/chapter-icml.md \
 	> $(PREDIR)/$*.md
-	mkdir -p $(LBFDIR)/${shell dirname $*}
+	mkdir -p $(ICMLDIR)/${shell dirname $*}
 	pandoc \
 	  $(PREDIR)/$*.md \
 	  --from markdown \
@@ -228,7 +228,7 @@ $(LBFDIR)/%.icml:
 	  --lua-filter $(FILDIR)/remove-paragraph-codes.lua \
 	  --lua-filter $(FILDIR)/add-first-paragraph-style.lua \
 	  --standalone \
-	  --output $(LBFDIR)/$*.icml
+	  --output $(ICMLDIR)/$*.icml
 
 #==[ LATEX SOURCECODE - WHOLE BOOK ]============================================
 
