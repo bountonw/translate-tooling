@@ -112,8 +112,8 @@ $(PREDIR)/%.md : $(SRCDIR)/%.md $(TPLDIR)/chapter.md
   | \
 	pandoc \
 	  --id-prefix='$*@' \
-	  --from markdown \
-	  --to markdown \
+	  --from markdown_strict+hard_line_breaks+yaml_metadata_block \
+	  --to markdown_strict+hard_line_breaks+yaml_metadata_block \
 	  --standalone \
 	  --variable=this:$* \
 	  --variable=prev:$(notdir $(basename $(shell ls $(SRCDIR)/*.md | grep -B 1 $(SRCDIR)/$*.md | head -n 1))) \
@@ -162,7 +162,7 @@ $(TEXDIR)/%.tex : $(PREDIR)/%.md $(TPLDIR)/chapter.tex $(FILDIR)/inline-latex.hs
 	cat $(PREDIR)/$*.md \
 	| \
 	pandoc \
-	  --from markdown \
+	  --from markdown_strict+hard_line_breaks+yaml_metadata_block \
 	  --to latex \
 	  --template=$(TPLDIR)/chapter.tex \
 	  --lua-filter $(FILDIR)/remove-paragraph-code-headings.lua \
@@ -213,8 +213,8 @@ $(LBFDIR)/%.icml:
   | \
 	pandoc \
 	  --id-prefix='$*@' \
-	  --from markdown \
-	  --to markdown \
+	  --from markdown_strict+hard_line_breaks+yaml_metadata_block \
+	  --to markdown_strict+hard_line_breaks+yaml_metadata_block \
 	  --standalone \
 	  --variable=this:$* \
 	  --template=$(TPLDIR)/chapter-lbf.md \
@@ -222,7 +222,7 @@ $(LBFDIR)/%.icml:
 	mkdir -p $(LBFDIR)/${shell dirname $*}
 	pandoc \
 	  $(PREDIR)/$*.md \
-	  --from markdown \
+	  --from markdown_strict+hard_line_breaks+yaml_metadata_block \
 	  --lua-filter $(FILDIR)/remove-paragraph-code-headings.lua \
 	  --lua-filter $(FILDIR)/transform-poetry.lua \
 	  --lua-filter $(FILDIR)/remove-paragraph-codes.lua \
@@ -279,7 +279,7 @@ $(DFTDIR)/book.pdf : $(TEXDIR)/book.tex $(TPLDIR)/draft.tex
 $(DFTDIR)/%.odt : $(SRCDIR)/%.md $(TPLDIR)/draft.odt $(TPLDIR)/reference.odt $(SRCDIR)/metadata.yaml
 	mkdir -p $(DFTDIR)
 	pandoc \
-	  --from markdown \
+	  --from markdown_strict+hard_line_breaks+yaml_metadata_block \
 	  --to odt \
 	  --template=$(TPLDIR)/draft.odt \
 	  --variable=date:$(shell date +%FT%T.%N) \
@@ -299,7 +299,7 @@ $(DFTDIR)/%.odt : $(SRCDIR)/%.md $(TPLDIR)/draft.odt $(TPLDIR)/reference.odt $(S
 $(DFTDIR)/book.odt : $(ALLPRE) $(TPLDIR)/reference.odt
 	mkdir -p $(DFTDIR)
 	pandoc \
-	  --from markdown \
+	  --from markdown_strict+hard_line_breaks+yaml_metadata_block \
 	  --to odt \
 	  --template=$(TPLDIR)/draft.odt \
 	  --variable=date:$(shell date +%FT%T.%N) \
@@ -319,7 +319,7 @@ $(DFTDIR)/book.odt : $(ALLPRE) $(TPLDIR)/reference.odt
 # usage: make html/filename.html
 $(HTMDIR)/%.html : html_assets $(SRCDIR)/metadata.yaml $(PREDIR)/%.md $(TPLDIR)/html/default.html
 	pandoc \
-	  --from markdown \
+	  --from markdown_strict+hard_line_breaks+yaml_metadata_block \
 	  --to html5 \
 	  --id-prefix='$*@' \
 	  --template=$(TPLDIR)/html/default.html \
@@ -365,7 +365,7 @@ $(HTMDIR)/toc.html : html_assets $(ALLHTM) $(SRCDIR)/metadata.yaml $(TPLDIR)/htm
 	  --output $(PREDIR)/pre-toc.html \
 	  $(ALLHTM)
 	pandoc \
-	  --from markdown \
+	  --from markdown_strict+hard_line_breaks+yaml_metadata_block \
 	  --to html5 \
 	  --template=$(TPLDIR)/html/default.html \
 	  --variable=pagetitle:'สารบัญ' \
@@ -383,7 +383,7 @@ $(HTMDIR)/toc.html : html_assets $(ALLHTM) $(SRCDIR)/metadata.yaml $(TPLDIR)/htm
 # usage: make html/index.html
 $(HTMDIR)/index.html : html_assets $(SRCDIR)/metadata.yaml $(TPLDIR)/html/default.html
 	pandoc \
-	  --from markdown \
+	  --from markdown_strict+hard_line_breaks+yaml_metadata_block \
 	  --to html5 \
 	  --template=$(TPLDIR)/html/default.html \
 	  --variable=pagetitle:'ปก' \
