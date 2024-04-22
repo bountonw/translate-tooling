@@ -223,6 +223,7 @@ $(ICMLDIR)/%.icml:
 	pandoc \
 	  $(PREDIR)/$*.md \
 	  --from markdown \
+	  --lua-filter $(FILDIR)/apply-forbidden-breaks.lua \
 	  --lua-filter $(FILDIR)/remove-paragraph-code-headings.lua \
 	  --lua-filter $(FILDIR)/transform-poetry.lua \
 	  --lua-filter $(FILDIR)/remove-paragraph-codes.lua \
