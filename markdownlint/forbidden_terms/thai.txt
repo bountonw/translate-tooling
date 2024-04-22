@@ -1,6 +1,7 @@
 # List of common typos and misspellings of Thai words to be flagged.
 
 2โครินธ์
+TSV
 กฏบัญญัติ
 กฏหมาย
 กฏเกณฑ์
@@ -45,6 +46,7 @@
 มากว่า
 ฤทธ์
 วิญญณ
+วิณณาณ
 วิรกรรม
 ศุญ
 สันตภาพ
