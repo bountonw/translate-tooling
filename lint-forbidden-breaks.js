@@ -12,7 +12,7 @@ try {
   );
   const words = forbiddenBreaks.split("\n");
   for (const word of words) {
-    if (/[^\u0E00-\u0E7F]/.test(word)) {
+    if (/[^\u0E00-\u0E7F]\d /.test(word)) {
       console.error(`Invalid forbidden-break word found: "${word}"`);
       valid = false;
     }
