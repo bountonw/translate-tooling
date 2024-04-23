@@ -52,7 +52,7 @@ const customFormattingRules = [
       if (
         line &&
         filename.search("/assets/") === -1 && // Ignore assets files
-        line.search(/^(?!(#+|\{|\[\^\d\]|\s{4}|$))/) === 0
+        line.search(/^(?!(#+|\{|\[\^\d\]|\s{4}|$)|> > > > >)/) === 0
       ) {
         const lineIndex = lines.findIndex((l) => l === line);
         const nextLine = lines[lineIndex + 1] || lines[lineIndex + 2];
