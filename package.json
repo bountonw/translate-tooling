@@ -5,7 +5,8 @@
   },
   "scripts": {
     "lint": "./markdownlint/index.js ../",
-    "lint-frontmatter": "remark --frail ../"
+    "lint-frontmatter": "remark --frail ../",
+    "lint-forbidden-breaks": "./lint-forbidden-breaks.js"
   },
   "devDependencies": {
     "globby": "^14.0.1",
