@@ -79,6 +79,10 @@ clobber:
 	rm -rf $(EBKDIR)
 	rm -rf $(ICMLDIR)
 
+#==[ SETTINGS ]===============================================================
+
+MARKDOWN_FORMAT = markdown_strict+footnotes+hard_line_breaks+yaml_metadata_block
+
 #==[ PREPROCESSING: TEXT -> MARKDOWN ]==========================================
 
 # This target produces a single preprocessed chapter, translating the text file
@@ -112,8 +116,8 @@ $(PREDIR)/%.md : $(SRCDIR)/%.md $(TPLDIR)/chapter.md
   | \
 	pandoc \
 	  --id-prefix='$*@' \
-	  --from markdown \
-	  --to markdown \
+	  --from $(MARKDOWN_FORMAT) \
+	  --to $(MARKDOWN_FORMAT) \
 	  --standalone \
 	  --variable=this:$* \
 	  --variable=prev:$(notdir $(basename $(shell ls $(SRCDIR)/*.md | grep -B 1 $(SRCDIR)/$*.md | head -n 1))) \
@@ -162,7 +166,7 @@ $(TEXDIR)/%.tex : $(PREDIR)/%.md $(TPLDIR)/chapter.tex $(FILDIR)/inline-latex.hs
 	cat $(PREDIR)/$*.md \
 	| \
 	pandoc \
-	  --from markdown \
+	  --from $(MARKDOWN_FORMAT) \
 	  --to latex \
 	  --template=$(TPLDIR)/chapter.tex \
 	  --lua-filter $(FILDIR)/remove-paragraph-code-headings.lua \
@@ -213,8 +217,8 @@ $(ICMLDIR)/%.icml:
   | \
 	pandoc \
 	  --id-prefix='$*@' \
-	  --from markdown \
-	  --to markdown \
+	  --from $(MARKDOWN_FORMAT) \
+	  --to $(MARKDOWN_FORMAT) \
 	  --standalone \
 	  --variable=this:$* \
 	  --template=$(TPLDIR)/chapter-icml.md \
@@ -222,7 +226,7 @@ $(ICMLDIR)/%.icml:
 	mkdir -p $(ICMLDIR)/${shell dirname $*}
 	pandoc \
 	  $(PREDIR)/$*.md \
-	  --from markdown \
+	  --from $(MARKDOWN_FORMAT) \
 	  --lua-filter $(FILDIR)/apply-forbidden-breaks.lua \
 	  --lua-filter $(FILDIR)/remove-paragraph-code-headings.lua \
 	  --lua-filter $(FILDIR)/transform-poetry.lua \
@@ -280,7 +284,7 @@ $(DFTDIR)/book.pdf : $(TEXDIR)/book.tex $(TPLDIR)/draft.tex
 $(DFTDIR)/%.odt : $(SRCDIR)/%.md $(TPLDIR)/draft.odt $(TPLDIR)/reference.odt $(SRCDIR)/metadata.yaml
 	mkdir -p $(DFTDIR)
 	pandoc \
-	  --from markdown \
+	  --from $(MARKDOWN_FORMAT) \
 	  --to odt \
 	  --template=$(TPLDIR)/draft.odt \
 	  --variable=date:$(shell date +%FT%T.%N) \
@@ -300,7 +304,7 @@ $(DFTDIR)/%.odt : $(SRCDIR)/%.md $(TPLDIR)/draft.odt $(TPLDIR)/reference.odt $(S
 $(DFTDIR)/book.odt : $(ALLPRE) $(TPLDIR)/reference.odt
 	mkdir -p $(DFTDIR)
 	pandoc \
-	  --from markdown \
+	  --from $(MARKDOWN_FORMAT) \
 	  --to odt \
 	  --template=$(TPLDIR)/draft.odt \
 	  --variable=date:$(shell date +%FT%T.%N) \
@@ -320,7 +324,7 @@ $(DFTDIR)/book.odt : $(ALLPRE) $(TPLDIR)/reference.odt
 # usage: make html/filename.html
 $(HTMDIR)/%.html : html_assets $(SRCDIR)/metadata.yaml $(PREDIR)/%.md $(TPLDIR)/html/default.html
 	pandoc \
-	  --from markdown \
+	  --from $(MARKDOWN_FORMAT) \
 	  --to html5 \
 	  --id-prefix='$*@' \
 	  --template=$(TPLDIR)/html/default.html \
@@ -366,7 +370,7 @@ $(HTMDIR)/toc.html : html_assets $(ALLHTM) $(SRCDIR)/metadata.yaml $(TPLDIR)/htm
 	  --output $(PREDIR)/pre-toc.html \
 	  $(ALLHTM)
 	pandoc \
-	  --from markdown \
+	  --from $(MARKDOWN_FORMAT) \
 	  --to html5 \
 	  --template=$(TPLDIR)/html/default.html \
 	  --variable=pagetitle:'สารบัญ' \
@@ -384,7 +388,7 @@ $(HTMDIR)/toc.html : html_assets $(ALLHTM) $(SRCDIR)/metadata.yaml $(TPLDIR)/htm
 # usage: make html/index.html
 $(HTMDIR)/index.html : html_assets $(SRCDIR)/metadata.yaml $(TPLDIR)/html/default.html
 	pandoc \
-	  --from markdown \
+	  --from $(MARKDOWN_FORMAT) \
 	  --to html5 \
 	  --template=$(TPLDIR)/html/default.html \
 	  --variable=pagetitle:'ปก' \
