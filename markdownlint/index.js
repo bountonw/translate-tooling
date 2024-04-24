@@ -13,6 +13,7 @@ const GLOBAL_CONFIG = {
   "no-inline-html": false,
   "no-trailing-punctuation": false,
   "no-blanks-blockquote": false,
+  "ol-prefix": false,
   "single-trailing-newline": false,
   "heading-style": {
     style: "atx",
