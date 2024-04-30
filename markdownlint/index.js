@@ -3,7 +3,21 @@
 process.chdir("../");
 
 import { globby } from "globby";
+import fs from "fs";
+import path from "path";
 import markdownlint from "markdownlint";
+
+const metadataCache = {};
+const checkMetadataForSetting = (filename, setting) => {
+  const bookPath = path.dirname(path.dirname(filename));
+  if (!metadataCache[bookPath]) {
+    metadataCache[bookPath] = fs.readFileSync(
+      path.join(bookPath, "metadata.yaml"),
+      "utf-8"
+    );
+  }
+  return metadataCache[bookPath].indexOf(setting) !== -1;
+};
 
 const GLOBAL_CONFIG = {
   "fenced-code-language": false,
@@ -60,11 +74,24 @@ const CHECKS = [
       default: false,
     },
   },
+  {
+    globPath: "./**/",
+    fileFilter: (filename) => {
+      return (
+        !checkMetadataForSetting(filename, "optional_reference_codes") &&
+        filename.search("/assets/") === -1 // Ignore assets files
+      );
+    },
+    customFormatting: "custom-formatting-reference-code.js",
+    config: {
+      default: false,
+    },
+  },
 ];
 
 (async () => {
   let allClear = true;
-  for (const { globPath, customFormatting, config } of CHECKS) {
+  for (const { globPath, customFormatting, config, fileFilter } of CHECKS) {
     const paths = await globby([
       `${globPath}*.md`,
       "!node_modules",
@@ -80,7 +107,7 @@ const CHECKS = [
       customRules = [customRule];
     }
     const options = {
-      files: paths,
+      files: fileFilter ? paths.filter(fileFilter) : paths,
       config: {
         ...config,
         ...(customRules.length && {

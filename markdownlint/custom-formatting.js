@@ -46,27 +46,6 @@ const customFormattingRules = [
     regexp: /\d(-|—)\d/,
   },
   {
-    name: "invalid reference code",
-    test: (line, params) => {
-      const { name: filename, lines } = params;
-      if (
-        line &&
-        filename.search("/assets/") === -1 && // Ignore assets files
-        line.search(/^(?!(#+|\{|\[\^\d\]|\s{4}|$)|> > > > >)/) === 0
-      ) {
-        const lineIndex = lines.findIndex((l) => l === line);
-        const nextLine = lines[lineIndex + 1] || lines[lineIndex + 2];
-        const isFollowingLinePoetry =
-          nextLine && nextLine.search(/^(>(\s|$)|\s{4,}\S+)/) === 0;
-        return isFollowingLinePoetry ||
-          line.search(/\{\w+ \d{1,3}\.\d{1,2}\}$/) >= 0
-          ? -1
-          : line.length - 1;
-      }
-      return -1;
-    },
-  },
-  {
     name: "missing space after numbers",
     regexp: /\d[A-Za-z\u0E00-\u0E7F\u0E80-\u0EFF]/, // The Unicode ranges for Thai and Lao, respectively, per https://www.herongyang.com/Unicode-Blocks/Block-U0E00-Thai.html and https://www.herongyang.com/Unicode-Blocks/Block-U0E80-Lao.html
   },
