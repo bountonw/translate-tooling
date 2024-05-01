@@ -17,6 +17,9 @@ function read_file_lines(path)
 end
 
 local words = read_file_lines('./dictionaries/forbidden-breaks')
+table.sort(words, function (a, b)
+    return utf8.len(a) > utf8.len(b)
+end)
 
 function Inlines (inlines)
     local new_inlines = {}
@@ -47,7 +50,7 @@ end
 function Str (el)
     local t = {el.text}
     -- logging.temp('text', el.text)
-    for w = #words, 1, -1 do
+    for w = 1, #words, 1 do
         word = words[w]
         for i, textOrEl in ipairs(t) do
             -- logging.temp('text', textOrEl, word)
