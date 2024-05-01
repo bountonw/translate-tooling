@@ -227,6 +227,7 @@ $(ICMLDIR)/%.icml:
 	pandoc \
 	  $(PREDIR)/$*.md \
 	  --from $(MARKDOWN_FORMAT) \
+	  --lua-filter $(FILDIR)/transform-ellipsis.lua \
 	  --lua-filter $(FILDIR)/apply-forbidden-breaks.lua \
 	  --lua-filter $(FILDIR)/remove-paragraph-code-headings.lua \
 	  --lua-filter $(FILDIR)/transform-poetry.lua \
