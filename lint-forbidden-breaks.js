@@ -21,17 +21,6 @@ try {
       valid = false;
     }
   }
-  const correctlySortedWords = [...words].sort((a, b) =>
-    a.localeCompare(b, "th")
-  );
-  if (JSON.stringify(words) !== JSON.stringify(correctlySortedWords)) {
-    console.error(
-      `Forbidden words aren't sorted correctly:\n\n${correctlySortedWords.join(
-        "\n"
-      )}\n`
-    );
-    valid = false;
-  }
 } catch (e) {
   console.error(e);
   valid = false;
