@@ -10,7 +10,7 @@ try {
     path.join(process.cwd(), "latex/dictionaries/forbidden-breaks"),
     "utf8"
   );
-  const words = forbiddenBreaks.split("\n");
+  const words = forbiddenBreaks.trim().split("\n");
   for (const word of words) {
     if (/[^\u0E00-\u0E7F]\d /.test(word)) {
       console.error(`Invalid forbidden-break word found: "${word}"`);
