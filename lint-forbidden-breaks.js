@@ -10,7 +10,7 @@ try {
     path.join(process.cwd(), "latex/dictionaries/forbidden-breaks"),
     "utf8"
   );
-  const words = forbiddenBreaks.split("\n");
+  const words = forbiddenBreaks.trim().split("\n");
   for (const word of words) {
     if (/[^\u0E00-\u0E7F]\d /.test(word)) {
       console.error(`Invalid forbidden-break word found: "${word}"`);
@@ -20,6 +20,17 @@ try {
       console.error(`Found word occurring multiple times: ${word}`);
       valid = false;
     }
+  }
+  const correctlySortedWords = [...words].sort((a, b) =>
+    a.localeCompare(b, "th")
+  );
+  if (JSON.stringify(words) !== JSON.stringify(correctlySortedWords)) {
+    console.error(
+      `Forbidden words aren't sorted correctly:\n\n${correctlySortedWords.join(
+        "\n"
+      )}\n`
+    );
+    valid = false;
   }
 } catch (e) {
   console.error(e);
