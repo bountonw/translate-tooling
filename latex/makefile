@@ -82,6 +82,11 @@ clobber:
 #==[ SETTINGS ]===============================================================
 
 MARKDOWN_FORMAT = markdown_strict+footnotes+hard_line_breaks+yaml_metadata_block
+SHARED_TEXT_FILTERS = --lua-filter $(FILDIR)/stitch-adjacent-strings.lua \
+--lua-filter $(FILDIR)/remove-paragraph-code-headings.lua \
+--lua-filter $(FILDIR)/transform-poetry.lua \
+--lua-filter $(FILDIR)/add-first-paragraph-style.lua \
+--lua-filter $(FILDIR)/transform-ellipsis.lua
 
 #==[ PREPROCESSING: TEXT -> MARKDOWN ]==========================================
 
@@ -169,8 +174,8 @@ $(TEXDIR)/%.tex : $(PREDIR)/%.md $(TPLDIR)/chapter.tex $(FILDIR)/inline-latex.hs
 	  --from $(MARKDOWN_FORMAT) \
 	  --to latex \
 	  --template=$(TPLDIR)/chapter.tex \
-	  --lua-filter $(FILDIR)/remove-paragraph-code-headings.lua \
-	  --lua-filter $(FILDIR)/transform-poetry.lua \
+	  $(SHARED_TEXT_FILTERS) \
+	  $(if $(findstring strip_reference_codes_on_output,$(shell cat $(SRCDIR)/$(shell dirname $(shell dirname $*))/metadata.yaml)),--lua-filter $(FILDIR)/remove-paragraph-codes.lua, ) \
 	  --variable=modified:"$(shell cd $(SRCDIR) && git log -n 1 --pretty=format:%cd --date=format:"%Y-%m-%d at %H:%M" $*.md)" \
 	| \
 	swath \
@@ -227,13 +232,9 @@ $(ICMLDIR)/%.icml:
 	pandoc \
 	  $(PREDIR)/$*.md \
 	  --from $(MARKDOWN_FORMAT) \
-	  --lua-filter $(FILDIR)/stitch-adjacent-strings.lua \
-	  --lua-filter $(FILDIR)/transform-ellipsis.lua \
+	  $(SHARED_TEXT_FILTERS) \
 	  --lua-filter $(FILDIR)/apply-forbidden-breaks.lua \
-	  --lua-filter $(FILDIR)/remove-paragraph-code-headings.lua \
-	  --lua-filter $(FILDIR)/transform-poetry.lua \
 	  $(if $(findstring strip_reference_codes_on_output,$(shell cat $(SRCDIR)/$(shell dirname $(shell dirname $*))/metadata.yaml)),--lua-filter $(FILDIR)/remove-paragraph-codes.lua, ) \
-	  --lua-filter $(FILDIR)/add-first-paragraph-style.lua \
 	  --standalone \
 	  --output $(ICMLDIR)/$*.icml
 
