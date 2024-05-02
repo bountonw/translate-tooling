@@ -1,0 +1,18 @@
+name: Lint Lua code
+
+on:
+  pull_request:
+    paths:
+      - '**/*.lua'
+      - .luacheckrc
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          submodules: 'recursive'
+      - name: Luacheck linter
+        uses: lunarmodules/luacheck@v1

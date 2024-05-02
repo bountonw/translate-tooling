@@ -1,6 +1,5 @@
 -- local logging = require 'logging'
-
-function Inlines (inlines)
+function Inlines(inlines)
     local new_inlines = {}
     local current_string = ""
 
@@ -10,7 +9,7 @@ function Inlines (inlines)
             current_string = current_string .. inlines[i].text
         elseif inlines[i].t == "Space" or inlines[i].t == "SoftBreak" then
             current_string = current_string .. " "
-        else 
+        else
             if current_string then
                 table.insert(new_inlines, pandoc.Str(current_string))
                 current_string = ""
