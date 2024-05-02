@@ -26,7 +26,7 @@ function Str(el)
     local t = {el.text}
     -- logging.temp('text', el.text)
     for w = 1, #words, 1 do
-        word = words[w]
+        local word = words[w]
         for i, textOrEl in ipairs(t) do
             -- logging.temp('text', textOrEl, word)
             if type(textOrEl) == "string" then
@@ -46,7 +46,6 @@ function Str(el)
                         insertIndex = insertIndex + 1
                     end
                     table.remove(t, i)
-                    i = insertIndex - 1
                 end
             end
         end
