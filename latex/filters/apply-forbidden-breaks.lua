@@ -43,7 +43,6 @@ function Str(el)
                     }))
                     if #textOrEl > wordIndex + #word then
                         table.insert(t, insertIndex + 1, string.sub(textOrEl, wordIndex + #word))
-                        insertIndex = insertIndex + 1
                     end
                     table.remove(t, i)
                 end
