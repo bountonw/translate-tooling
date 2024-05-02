@@ -3,7 +3,7 @@ name: Lint Lua code
 on:
   pull_request:
     paths:
-      - *.lua
+      - '**/*.lua'
       - .luacheckrc
 
 jobs:
