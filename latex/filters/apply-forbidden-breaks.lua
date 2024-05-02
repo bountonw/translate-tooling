@@ -1,10 +1,11 @@
 -- local logging = require 'logging'
-
 traverse = 'topdown'
 
-function read_file_lines(path)
+local function read_file_lines(path)
     local file = io.open(path, "rb")
-    if not file then return nil end
+    if not file then
+        return nil
+    end
 
     local lines = {}
 
@@ -17,11 +18,11 @@ function read_file_lines(path)
 end
 
 local words = read_file_lines('./dictionaries/forbidden-breaks')
-table.sort(words, function (a, b)
+table.sort(words, function(a, b)
     return utf8.len(a) > utf8.len(b)
 end)
 
-function Str (el)
+function Str(el)
     local t = {el.text}
     -- logging.temp('text', el.text)
     for w = 1, #words, 1 do
@@ -37,7 +38,9 @@ function Str (el)
                         table.insert(t, insertIndex, string.sub(textOrEl, 1, wordIndex - 1))
                         insertIndex = insertIndex + 1
                     end
-                    table.insert(t, insertIndex, pandoc.Span(string.sub(textOrEl, wordIndex, wordIndex + #word - 1), { ["custom-style"] = 'Forbidden Break'}))
+                    table.insert(t, insertIndex, pandoc.Span(string.sub(textOrEl, wordIndex, wordIndex + #word - 1), {
+                        ["custom-style"] = 'Forbidden Break'
+                    }))
                     if #textOrEl > wordIndex + #word then
                         table.insert(t, insertIndex + 1, string.sub(textOrEl, wordIndex + #word))
                         insertIndex = insertIndex + 1
