@@ -232,7 +232,7 @@ $(ICMLDIR)/%.icml:
 	  --lua-filter $(FILDIR)/apply-forbidden-breaks.lua \
 	  --lua-filter $(FILDIR)/remove-paragraph-code-headings.lua \
 	  --lua-filter $(FILDIR)/transform-poetry.lua \
-	  --lua-filter $(FILDIR)/remove-paragraph-codes.lua \
+	  $(if $(findstring strip_reference_codes_on_output,$(shell cat $(SRCDIR)/$(shell dirname $(shell dirname $*))/metadata.yaml)),--lua-filter $(FILDIR)/remove-paragraph-codes.lua, ) \
 	  --lua-filter $(FILDIR)/add-first-paragraph-style.lua \
 	  --standalone \
 	  --output $(ICMLDIR)/$*.icml
