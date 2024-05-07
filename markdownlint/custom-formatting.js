@@ -46,10 +46,6 @@ const customFormattingRules = [
     regexp: /\d(-|—)\d/,
   },
   {
-    name: "periods instead of ellipsis",
-    regexp: /\.\s*?\.\s*?\.(?![\s\.]*\-\-\>)/,
-  },
-  {
     name: "missing space after numbers",
     regexp: /\d[A-Za-z\u0E00-\u0E7F\u0E80-\u0EFF]/, // The Unicode ranges for Thai and Lao, respectively, per https://www.herongyang.com/Unicode-Blocks/Block-U0E00-Thai.html and https://www.herongyang.com/Unicode-Blocks/Block-U0E80-Lao.html
   },
