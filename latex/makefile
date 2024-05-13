@@ -82,7 +82,8 @@ clobber:
 #==[ SETTINGS ]===============================================================
 
 MARKDOWN_FORMAT = markdown_strict+footnotes+hard_line_breaks+yaml_metadata_block
-SHARED_TEXT_FILTERS = --lua-filter $(FILDIR)/stitch-adjacent-strings.lua \
+SHARED_TEXT_FILTERS = --lua-filter $(FILDIR)/space-italics.lua \
+--lua-filter $(FILDIR)/stitch-adjacent-strings.lua \
 --lua-filter $(FILDIR)/remove-paragraph-code-headings.lua \
 --lua-filter $(FILDIR)/transform-poetry.lua \
 --lua-filter $(FILDIR)/add-first-paragraph-style.lua \
