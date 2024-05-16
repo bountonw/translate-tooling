@@ -87,7 +87,8 @@ SHARED_TEXT_FILTERS = --lua-filter $(FILDIR)/space-italics.lua \
 --lua-filter $(FILDIR)/remove-paragraph-code-headings.lua \
 --lua-filter $(FILDIR)/transform-poetry.lua \
 --lua-filter $(FILDIR)/add-first-paragraph-style.lua \
---lua-filter $(FILDIR)/transform-ellipsis.lua
+--lua-filter $(FILDIR)/transform-ellipsis.lua \
+--lua-filter $(FILDIR)/remove-duplicate-spaces.lua
 
 #==[ PREPROCESSING: TEXT -> MARKDOWN ]==========================================
 
