@@ -1,4 +1,4 @@
-### $chapter.number$
+## $chapter.number$
 
 # $chapter.title.th$
 
