@@ -1,5 +1,8 @@
 function Header(el)
     if el.level == 2 then
-        return {}
+        local content_str = pandoc.utils.stringify(el.content)
+        if string.match(content_str, '{') then
+            return {}
+        end
     end
 end
