@@ -38,11 +38,14 @@ function Str(el)
                         table.insert(t, insertIndex, string.sub(textOrEl, 1, wordIndex - 1))
                         insertIndex = insertIndex + 1
                     end
-                    table.insert(t, insertIndex, pandoc.Span(string.sub(textOrEl, wordIndex, wordIndex + #word - 1), {
-                        ["custom-style"] = 'Forbidden Break'
-                    }))
-                    if #textOrEl > wordIndex + #word then
-                        table.insert(t, insertIndex + 1, string.sub(textOrEl, wordIndex + #word))
+                    -- logging.temp('len', utf8.len(word), string.len(word), word)
+                    local wordTruncationOffset = (utf8.len(word) > 3 and 6 or 0)
+                    table.insert(t, insertIndex,
+                        pandoc.Span(string.sub(textOrEl, wordIndex, wordIndex + #word - 1 - wordTruncationOffset), {
+                            ["custom-style"] = 'Forbidden Break'
+                        }))
+                    if #textOrEl > wordIndex + #word - 6 then
+                        table.insert(t, insertIndex + 1, string.sub(textOrEl, wordIndex + #word - wordTruncationOffset))
                     end
                     table.remove(t, i)
                 end
