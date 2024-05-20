@@ -88,7 +88,8 @@ SHARED_TEXT_FILTERS = --lua-filter $(FILDIR)/space-italics.lua \
 --lua-filter $(FILDIR)/transform-poetry.lua \
 --lua-filter $(FILDIR)/add-first-paragraph-style.lua \
 --lua-filter $(FILDIR)/transform-ellipsis.lua \
---lua-filter $(FILDIR)/remove-duplicate-spaces.lua
+--lua-filter $(FILDIR)/remove-duplicate-spaces.lua \
+--lua-filter $(FILDIR)/bold-proper-names.lua
 
 #==[ PREPROCESSING: TEXT -> MARKDOWN ]==========================================
 
@@ -170,9 +171,8 @@ $(PREDIR)/%.md : $(SRCDIR)/%.md $(TPLDIR)/chapter.md
 $(TEXDIR)/%.tex : $(PREDIR)/%.md $(TPLDIR)/chapter.tex $(FILDIR)/inline-latex.hs $(DICDIR)/penalized-breaks $(DICDIR)/forbidden-breaks
 #$(TEXDIR)/%.tex : $(PREDIR)/%.md $(TPLDIR)/chapter.tex $(DICDIR)/penalized-breaks $(DICDIR)/forbidden-breaks
 	mkdir -p $(TEXDIR)/${shell dirname $*}
-	cat $(PREDIR)/$*.md \
-	| \
 	pandoc \
+	  $(PREDIR)/$*.md \
 	  --from $(MARKDOWN_FORMAT) \
 	  --to latex \
 	  --template=$(TPLDIR)/chapter.tex \
