@@ -13,6 +13,14 @@ const customFormattingRules = [
     name: "periods instead of ellipsis",
     regexp: /\.\s*?\.\s*?\.(?![\s\.]*\-\-\>)/,
   },
+  {
+    name: "periods instead of ellipsis",
+    regexp: /\.\s*?\.\s*?\.(?![\s\.]*\-\-\>)/,
+  },
+  {
+    name: "space around ellipsis",
+    regexp: /(?:[^‘’”]\s+…|…\s+[^‘’”])/,
+  },
 ];
 
 const CustomFormatting = {
