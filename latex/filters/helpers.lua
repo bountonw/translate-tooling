@@ -1,5 +1,4 @@
 -- local logging = require 'logging'
-local utf8 = require 'lua-utf8'
 local helpers = {}
 
 function helpers.read_file_lines(path)
@@ -44,18 +43,15 @@ function helpers.style_special_words(text, words, style, is_bold)
                         table.insert(t, insertIndex, string.sub(textOrEl, 1, wordIndex - 1))
                         insertIndex = insertIndex + 1
                     end
-                    local wordTruncationOffset = (utf8.len(word) > 3 and word ~= '. . .' and
-                                                     string.len(utf8.sub(word, -2)) or 0)
-                    local new_string = pandoc.Span(string.sub(textOrEl, wordIndex,
-                        wordIndex + #word - 1 - wordTruncationOffset), {
+                    local new_string = pandoc.Span(string.sub(textOrEl, wordIndex, wordIndex + #word - 1), {
                         ["custom-style"] = style
                     })
                     if is_bold then
                         new_string = pandoc.Strong(new_string)
                     end
                     table.insert(t, insertIndex, new_string)
-                    if #textOrEl > wordIndex + #word - wordTruncationOffset then
-                        table.insert(t, insertIndex + 1, string.sub(textOrEl, wordIndex + #word - wordTruncationOffset))
+                    if #textOrEl > wordIndex + #word then
+                        table.insert(t, insertIndex + 1, string.sub(textOrEl, wordIndex + #word))
                     end
                     table.remove(t, i)
                 end

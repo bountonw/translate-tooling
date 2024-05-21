@@ -9,6 +9,14 @@ const customFormattingRules = [
     name: "invalid (ดู spacing",
     regexp: /\(ดู\S/,
   },
+  {
+    name: "periods instead of ellipsis",
+    regexp: /\.\s*?\.\s*?\.(?![\s\.]*\-\-\>)/,
+  },
+  {
+    name: "space around ellipsis",
+    regexp: /(?:[^‘’”]\s+…|…\s+[^‘’”])/,
+  },
 ];
 
 const CustomFormatting = {
