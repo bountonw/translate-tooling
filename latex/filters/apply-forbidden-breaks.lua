@@ -1,4 +1,5 @@
 -- local logging = require 'logging'
+local utf8 = require 'lua-utf8'
 traverse = 'topdown'
 
 local function read_file_lines(path)
@@ -39,7 +40,8 @@ function Str(el)
                         insertIndex = insertIndex + 1
                     end
                     -- logging.temp('len', utf8.len(word), string.len(word), word)
-                    local wordTruncationOffset = (utf8.len(word) > 3 and 6 or 0)
+                    local wordTruncationOffset = (utf8.len(word) > 3 and word ~= '. . .' and
+                                                     string.len(utf8.sub(word, -2)) or 0)
                     table.insert(t, insertIndex,
                         pandoc.Span(string.sub(textOrEl, wordIndex, wordIndex + #word - 1 - wordTruncationOffset), {
                             ["custom-style"] = 'Forbidden Break'
