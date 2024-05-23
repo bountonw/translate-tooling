@@ -29,6 +29,8 @@ const GLOBAL_CONFIG = {
   "no-blanks-blockquote": false,
   "ol-prefix": false,
   "single-trailing-newline": false,
+  "no-emphasis-as-heading": false,
+  "first-line-heading": false,
   "heading-style": {
     style: "atx",
   },
