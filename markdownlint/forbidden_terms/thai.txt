@@ -1,4 +1,4 @@
-# List of common typos and misspellings of Thai words to be flagged.\
+# List of common typos and misspellings of Thai words to be flagged.
 
 2โครินธ์
 TSV
