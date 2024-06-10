@@ -240,6 +240,12 @@ $(ICMLDIR)/%.icml:
 	  --standalone \
 	  --output $(ICMLDIR)/$*.icml
 
+pdfs/%:
+	+make $(patsubst $(SRCDIR)/%.md,$(DFTDIR)/%.pdf,$(sort $(shell find ../../$* -path "*/02_edit/*" -or -path "*/03_public/*" -name "*.md")))
+
+icmls/%:
+	+make $(patsubst $(SRCDIR)/%.md,$(ICMLDIR)/%.icml,$(sort $(shell find ../../$* -path "*/03_public/*" -name "*.md")))
+
 #==[ LATEX SOURCECODE - WHOLE BOOK ]============================================
 
 # This target generates the tex sourcecode for the whole book. there is nothing
