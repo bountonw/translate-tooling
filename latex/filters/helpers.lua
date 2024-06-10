@@ -44,8 +44,9 @@ function helpers.style_special_words(text, words, style, is_bold)
                         table.insert(t, insertIndex, string.sub(textOrEl, 1, wordIndex - 1))
                         insertIndex = insertIndex + 1
                     end
-                    local wordTruncationOffset = (utf8.len(word) > 3 and word ~= '. . .' and
-                                                     string.len(utf8.sub(word, -2)) or 0)
+                    local wordTruncationOffset = (not is_bold and
+                                                     (utf8.len(word) > 3 and word ~= '. . .' and
+                                                         string.len(utf8.sub(word, -2))) or 0)
                     local new_string = pandoc.Span(string.sub(textOrEl, wordIndex,
                         wordIndex + #word - 1 - wordTruncationOffset), {
                         ["custom-style"] = style
