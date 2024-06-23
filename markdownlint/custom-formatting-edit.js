@@ -2,14 +2,14 @@ import { applyCustomFormattingRules } from "./helpers.js";
 
 const customFormattingRules = [
   {
-    name: "no trailing space after 'ๆ' mai yamok",
-    regexp: /ๆ[^\s’”\[]/,
+    name: "closing parenthesis not properly followed",
+    regexp: /\)[^ ’”;:,.!<\[]/,
   },
 ];
 
 const CustomFormatting = {
-  names: ["custom-formatting-public-th"],
-  description: "Custom formatting (th) rules",
+  names: ["custom-formatting-edit"],
+  description: "Custom formatting rules",
   tags: ["style"],
   function: applyCustomFormattingRules(customFormattingRules),
 };
