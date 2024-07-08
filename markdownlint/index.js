@@ -70,8 +70,9 @@ const CHECKS = [
     },
   },
   {
-    globPath: "./th/**/03_public/",
-    customFormatting: "custom-formatting-public.th.js",
+    globPath: "./th/**/",
+    negativeGlobPath: "!./th/**/01_raw/",
+    customFormatting: "custom-formatting-edit.th.js",
     config: {
       default: false,
     },
@@ -93,7 +94,13 @@ const CHECKS = [
 
 (async () => {
   let allClear = true;
-  for (const { globPath, customFormatting, config, fileFilter } of CHECKS) {
+  for (const {
+    globPath,
+    negativeGlobPath,
+    customFormatting,
+    config,
+    fileFilter,
+  } of CHECKS) {
     const paths = await globby([
       `${globPath}*.md`,
       "!node_modules",
@@ -101,6 +108,7 @@ const CHECKS = [
       "!**/00_source/*.md",
       "!**/001_machineraw/*.md",
       "!**/README.md",
+      ...((negativeGlobPath && [`${negativeGlobPath}*.md`]) || []),
     ]);
     console.log(`Linting ${paths.length} files in "${globPath}"`);
     let customRules = [];

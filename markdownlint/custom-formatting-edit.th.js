@@ -8,7 +8,7 @@ const customFormattingRules = [
 ];
 
 const CustomFormatting = {
-  names: ["custom-formatting-public-th"],
+  names: ["custom-formatting-edit-th"],
   description: "Custom formatting (th) rules",
   tags: ["style"],
   function: applyCustomFormattingRules(customFormattingRules),
