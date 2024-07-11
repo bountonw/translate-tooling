@@ -23,7 +23,7 @@ const customFormattingRules = [
   },
   {
     name: "missing space before opening curly quotes",
-    regexp: /[^\s“‘\()][“‘]/,
+    regexp: /[^\s“‘\()\—][“‘]/,
   },
   {
     name: "invalid space after opening curly quotes",
@@ -35,7 +35,7 @@ const customFormattingRules = [
   },
   {
     name: "missing space after closing curly quotes",
-    regexp: /(\w”[^\s<’”—\[\)…]|(?<![a-z])’[^\s<”—\.\[\)…](?!s))/,
+    regexp: /(\w”[^\s<’”—\[\)…;]|(?<![a-z])’[^\s<”—\.\[\)…;](?!s))/,
   },
   {
     name: "semicolon followed by a number",
@@ -47,7 +47,7 @@ const customFormattingRules = [
   },
   {
     name: "missing space after numbers",
-    regexp: /\d[A-Za-z\u0E00-\u0E7F\u0E80-\u0EFF]/, // The Unicode ranges for Thai and Lao, respectively, per https://www.herongyang.com/Unicode-Blocks/Block-U0E00-Thai.html and https://www.herongyang.com/Unicode-Blocks/Block-U0E80-Lao.html
+    regexp: /\d[a-z\u0E00-\u0E7F\u0E80-\u0EFF]/, // The Unicode ranges for Thai and Lao, respectively, per https://www.herongyang.com/Unicode-Blocks/Block-U0E00-Thai.html and https://www.herongyang.com/Unicode-Blocks/Block-U0E80-Lao.html
   },
 ];
 
