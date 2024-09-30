@@ -18,6 +18,10 @@ const customFormattingRules = [
     },
   },
   {
+    name: "non-breaking whitespace",
+    regexp: / /,
+  },
+  {
     name: "no space before '{'",
     regexp: /\S{/,
   },
