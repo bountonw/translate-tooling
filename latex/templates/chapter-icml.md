@@ -2,6 +2,6 @@
 
 # $chapter.title.th$
 
-#### $chapter.basedon$
+$if(chapter.basedon)$#### $chapter.basedon$$endif$
 
 $body$
