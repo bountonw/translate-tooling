@@ -10,6 +10,10 @@ const customFormattingRules = [
     regexp: /\(ดู\S/,
   },
   {
+    name: "obsolete character",
+    regexp: /[◌ฺฃฅ]/,
+  },
+  {
     name: "periods instead of ellipsis",
     regexp: /\.\s*?\.\s*?\.(?![\s\.]*\-\-\>)/,
   },
