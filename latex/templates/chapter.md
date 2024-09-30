@@ -21,7 +21,7 @@ $else$
 # $chapter.title.en$
 $endif$
 
-<span class="basedon">$chapter.basedon$</span>
+$if(chapter.basedon)$<span class="basedon">ศึกษาควบคู่กับ $chapter.basedon$</span>$endif$
 
 $body$
 $for(include-after)$
