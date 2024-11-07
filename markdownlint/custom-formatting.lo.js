@@ -11,7 +11,7 @@ const customFormattingRules = [
   },
   {
     name: "forbidden ຫມ",
-    regexp: /(?<!ເນເ)ຫມ(?!ຢາ)/,
+    regexp: /(?<!ເນເ)(?<!ໂ)ຫມ(?!ຢາ)/,
   },
 ];
 
