@@ -127,7 +127,7 @@ $(PREDIR)/%.md : $(SRCDIR)/%.md $(TPLDIR)/chapter.md
 	  --from $(MARKDOWN_FORMAT) \
 	  --to $(MARKDOWN_FORMAT) \
 	  --standalone \
-	  --lua-filter $(FILDIR)/basedon-prefix.lua
+	  --lua-filter $(FILDIR)/basedon-prefix.lua \
 	  --variable=this:$* \
 	  --variable=prev:$(notdir $(basename $(shell ls $(SRCDIR)/*.md | grep -B 1 $(SRCDIR)/$*.md | head -n 1))) \
 	  --variable=next:$(notdir $(basename $(shell ls $(SRCDIR)/*.md | grep -A 1 $(SRCDIR)/$*.md | tail -n +2))) \
@@ -228,7 +228,7 @@ $(ICMLDIR)/%.icml:
 	  --from $(MARKDOWN_FORMAT) \
 	  --to $(MARKDOWN_FORMAT) \
 	  --standalone \
-	  --lua-filter $(FILDIR)/basedon-prefix.lua
+	  --lua-filter $(FILDIR)/basedon-prefix.lua \
 	  --variable=this:$* \
 	  --template=$(TPLDIR)/chapter-icml.md \
 	> $(PREDIR)/$*.md
