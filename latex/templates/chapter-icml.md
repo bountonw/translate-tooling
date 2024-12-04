@@ -2,6 +2,6 @@
 
 # $chapter.title.th$
 
-$if(chapter.basedon)$#### ศึกษาควบคู่กับ $chapter.basedon$$endif$
+$if(chapter.basedon)$#### $chapter.basedon$$endif$
 
 $body$

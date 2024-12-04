@@ -127,6 +127,7 @@ $(PREDIR)/%.md : $(SRCDIR)/%.md $(TPLDIR)/chapter.md
 	  --from $(MARKDOWN_FORMAT) \
 	  --to $(MARKDOWN_FORMAT) \
 	  --standalone \
+	  --lua-filter $(FILDIR)/basedon-prefix.lua
 	  --variable=this:$* \
 	  --variable=prev:$(notdir $(basename $(shell ls $(SRCDIR)/*.md | grep -B 1 $(SRCDIR)/$*.md | head -n 1))) \
 	  --variable=next:$(notdir $(basename $(shell ls $(SRCDIR)/*.md | grep -A 1 $(SRCDIR)/$*.md | tail -n +2))) \
@@ -219,7 +220,7 @@ $(DFTDIR)/%.pdf : $(TEXDIR)/%.tex $(TPLDIR)/chapter.tex $(TPLDIR)/draft.tex
 
 # usage: make icml/filename.icml
 $(ICMLDIR)/%.icml:
-	mkdir -p $(PREDIR)/$(shell dirname $*)	
+	mkdir -p $(PREDIR)/$(shell dirname $*)
 	cat $(SRCDIR)/$(shell dirname $(shell dirname $*))/metadata.yaml $(SRCDIR)/$*.md \
   | \
 	pandoc \
@@ -227,6 +228,7 @@ $(ICMLDIR)/%.icml:
 	  --from $(MARKDOWN_FORMAT) \
 	  --to $(MARKDOWN_FORMAT) \
 	  --standalone \
+	  --lua-filter $(FILDIR)/basedon-prefix.lua
 	  --variable=this:$* \
 	  --template=$(TPLDIR)/chapter-icml.md \
 	> $(PREDIR)/$*.md
