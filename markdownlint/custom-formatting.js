@@ -42,6 +42,10 @@ const customFormattingRules = [
     regexp: /(\w”[^\s<’”—\[\)…;]|(?<![a-z])’[^\s<”—\.\[\)…;](?!s))/,
   },
   {
+    name: "periods instead of ellipsis",
+    regexp: /\.\s*?\.\s*?\.(?![\s\.]*\-\-\>)/,
+  },
+  {
     name: "semicolon followed by a number",
     regexp: /;\d/,
   },
