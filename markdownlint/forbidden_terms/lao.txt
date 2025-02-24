@@ -19,6 +19,7 @@
 ຖຶງ
 ຖືງ
 ທັງທັງ
+ທີສາມາດ
 ທີ່ 1
 ທີ່ 2
 ທີ່ 3
@@ -29,7 +30,7 @@
 ທີ່ 8
 ທີ່ 9
 ທີ່ສອງ
-ທີ່ສາມ
+# ທີ່ສາມ is handled in a special rule to avoid incorrectly flagging ທີ່ສາມາດ as forbidden
 ທີ່ສິບ
 ທີ່ສີ
 ທີ່ຫົກ

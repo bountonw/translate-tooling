@@ -13,6 +13,10 @@ const customFormattingRules = [
     name: "forbidden ຫມ",
     regexp: /(?<!ເນເ)(?<!ໂ)ຫມ(?!ຢາ)/,
   },
+  {
+    name: "forbidden ທີ່ສາມ",
+    regexp: /ທີ່ສາມ(?!າດ)/,
+  },
 ];
 
 const CustomFormatting = {
