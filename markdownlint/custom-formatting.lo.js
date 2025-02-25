@@ -17,6 +17,14 @@ const customFormattingRules = [
     name: "forbidden ທີ່ສາມ",
     regexp: /ທີ່ສາມ(?!າດ)(?!ັນ)/,
   },
+  {
+    name: "forbidden ທີ່ສີ",
+    regexp: /ທີ່ສີ(?!່ແຍກ)/,
+  },
+  {
+    name: "forbidden ທີ່ຫ້າ",
+    regexp: /ທີ່ຫ້າ(?!ມ)(?!ວຫັນ)/,
+  },
 ];
 
 const CustomFormatting = {

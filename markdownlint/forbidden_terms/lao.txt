@@ -32,9 +32,9 @@
 ທີ່ສອງ
 # ທີ່ສາມ is handled in a special rule to avoid incorrectly flagging ທີ່ສາມາດ as forbidden
 ທີ່ສິບ
-ທີ່ສີ
+# ທີ່ສີ is handled in a special rule
 ທີ່ຫົກ
-ທີ່ຫ້າ
+# ທີ່ຫ້າ is handled in a special rule
 ທີ່ຮ້ອຍ
 ທີ່ເກົ້າ
 ທີ່ເຈັດ
