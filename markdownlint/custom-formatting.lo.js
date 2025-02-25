@@ -15,7 +15,7 @@ const customFormattingRules = [
   },
   {
     name: "forbidden ທີ່ສາມ",
-    regexp: /ທີ່ສາມ(?!າດ)/,
+    regexp: /ທີ່ສາມ(?!າດ)(?!ັນ)/,
   },
 ];
 
