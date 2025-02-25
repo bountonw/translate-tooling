@@ -1,8 +1,13 @@
 # List of common typos and misspellings of Lao words to be flagged.
 
+# ທີ່ສອງ is handled in a special rule to avoid incorrectly flagging valid words as forbidden
+# ທີ່ສາມ is handled in a special rule
+# ທີ່ສີ is handled in a special rule
+# ທີ່ຫ້າ is handled in a special rule
 ກຳໜົດ
 ກິບ
 ກຸງເຢຣູຊາເລັມ
+ຂັດແຍ່ງ
 ຄວາມຫວິງ
 ຄຮິດ
 ຄຮິສ
@@ -13,8 +18,12 @@
 ຊາບເຊິ່ງ
 ຊຳຮະ
 ຍາເວ
+ຍຳເກງ
+ຍຶດຖື
+ຍຶດໝັ້ນ
 ດ່າງພ້ອຍ
 ຕວາມ
+ຕະລອດ
 ຖະຫວາຍ
 ຖຶງ
 ຖືງ
@@ -29,12 +38,8 @@
 ທີ່ 7
 ທີ່ 8
 ທີ່ 9
-# ທີ່ສອງ is handled in a special rule to avoid incorrectly flagging valid words as forbidden
-# ທີ່ສາມ is handled in a special rule
 ທີ່ສິບ
-# ທີ່ສີ is handled in a special rule
 ທີ່ຫົກ
-# ທີ່ຫ້າ is handled in a special rule
 ທີ່ຮ້ອຍ
 ທີ່ເກົ້າ
 ທີ່ເຈັດ
@@ -43,12 +48,14 @@
 ນັກລົບ
 ນາຣົກ
 ນາລົກ
+ນີກາຍ
 ບັນເທິງ
 ບາປ
 ບິດເບື່ອນ
 ບຸກເບິກ
 ບໍລິບູນ
 ບໍລິສຸດ
+ປະຈູບັນ
 ປະໂລຫິດ
 ປັດຈຸບັນ
 ປັດສະຈາກ
@@ -58,15 +65,19 @@
 ປຸໂລຫິດ
 ຜິວເຜິນ
 ຜຼ້
+ຜ່າຍແພ້
 ພຣະຄຣິດ
 ພຣະອງ
 ພຮະ
 ພະຍາດໂລຄາ
 ພະເຢ
+ຣິດເດັດ
 ລຼ
 ວັດທະນາທຳ
 ວິສະຄອນສິນ
+ສອດຄ້ອງ
 ສະຫງ່າລາສີ
+ສະໜັບສະໜຸນ
 ສັດຕະວັດ
 ສັນຕະສຸກ
 ສາດສະໜາ
@@ -80,6 +91,7 @@
 ສູ້ລົບ
 ສົງເສີມ
 ສົມລົດ
+ຫຼີກລ່ຽງ
 ຫຼົງໃຫຼ
 ອະຫງຸ່ນ
 ອະເມຣິກາ
@@ -110,8 +122,10 @@
 ເປ໊ນ
 ເຝິກ
 ເພິ່ມ
+ເຢຊູຄຣິດ
 ເຢລູຊາເລັມ
 ເສື່ອມເສີຍ
+ເຫຼັ່າ
 ເອກກະລັກ
 ເເ
 ເແ
