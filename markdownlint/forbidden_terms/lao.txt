@@ -19,6 +19,7 @@
 ຖຶງ
 ຖືງ
 ທັງທັງ
+ທີສາມາດ
 ທີ່ 1
 ທີ່ 2
 ທີ່ 3
@@ -28,21 +29,21 @@
 ທີ່ 7
 ທີ່ 8
 ທີ່ 9
-ທີ່ສອງ
-ທີ່ສາມ
+# ທີ່ສອງ is handled in a special rule to avoid incorrectly flagging valid words as forbidden
+# ທີ່ສາມ is handled in a special rule
 ທີ່ສິບ
-ທີ່ສີ
+# ທີ່ສີ is handled in a special rule
 ທີ່ຫົກ
-ທີ່ຫ້າ
+# ທີ່ຫ້າ is handled in a special rule
 ທີ່ຮ້ອຍ
-ທີ່ເກົ່າ
+ທີ່ເກົ້າ
 ທີ່ເຈັດ
 ທີ່ໜຶ່ງ
 ນະລົກ
 ນັກລົບ
 ນາຣົກ
 ນາລົກ
-ບັນເທີງ
+ບັນເທິງ
 ບາປ
 ບິດເບື່ອນ
 ບຸກເບິກ
