@@ -29,8 +29,8 @@
 ທີ່ 7
 ທີ່ 8
 ທີ່ 9
-ທີ່ສອງ
-# ທີ່ສາມ is handled in a special rule to avoid incorrectly flagging ທີ່ສາມາດ as forbidden
+# ທີ່ສອງ is handled in a special rule to avoid incorrectly flagging valid words as forbidden
+# ທີ່ສາມ is handled in a special rule
 ທີ່ສິບ
 # ທີ່ສີ is handled in a special rule
 ທີ່ຫົກ
