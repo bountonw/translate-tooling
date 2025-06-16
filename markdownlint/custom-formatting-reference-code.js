@@ -10,7 +10,7 @@ const CustomFormatting = {
       test: (line, params) => {
         if (
           line &&
-          line.search(/^(?!(#+|\{|\[\^\d\]|\s{4}|$)|> > > > >)/) === 0
+          line.search(/^(?!(#+|\{|\[\^\d+\]|\s{4}|$)|> > > > >)/) === 0
         ) {
           const { lines } = params;
           const lineIndex = lines.findIndex((l) => l === line);
