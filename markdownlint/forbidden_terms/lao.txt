@@ -1,5 +1,5 @@
 # List of common typos and misspellings of Lao words to be flagged.
-
+prepare to add words
 # ທີ່ສອງ is handled in a special rule to avoid incorrectly flagging valid words as forbidden
 # ທີ່ສາມ is handled in a special rule
 # ທີ່ສີ is handled in a special rule
