@@ -64,17 +64,11 @@ const CHECKS = [
   },
   {
     globPath: "./lo/**/03_public/",
-    customFormatting: "custom-formatting-lao-am-vowel.js",
+    customFormatting: "custom-formatting-public.lo.js",
     config: {
       default: false,
     },
   },
-  {
-    globPath: "./lo/assets/dictionaries/",
-    customFormatting: "custom-formatting-lao-am-vowel.js",
-    config: {
-      default: false,
-    },
   {
     globPath: "./th/**/",
     customFormatting: "custom-formatting.th.js",
