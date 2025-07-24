@@ -63,13 +63,6 @@ const CHECKS = [
     },
   },
   {
-    globPath: "./lo/**/03_public/",
-    customFormatting: "custom-formatting-public.lo.js",
-    config: {
-      default: false,
-    },
-  },
-  {
     globPath: "./th/**/",
     customFormatting: "custom-formatting.th.js",
     config: {
