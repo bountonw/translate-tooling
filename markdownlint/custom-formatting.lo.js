@@ -47,6 +47,14 @@ const customFormattingRules = [
       return -1;
     },
   },
+  {
+    name: "missing space after punctuation",
+    regexp: /[,!?][\u0E80-\u0EFF]/,
+  },
+  {
+    name: "missing space after period",
+    regexp: /(?<![\s\(][ກຂຄງຈສຊຍດຕຖທນບປຜຝພຟມຢຣລວຫອຮ])\.[\u0E80-\u0EFF]/,
+  },
 ];
 
 const CustomFormatting = {
