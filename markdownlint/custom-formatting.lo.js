@@ -53,7 +53,7 @@ const customFormattingRules = [
   },
   {
     name: "missing space after period",
-    regexp: /(?<![\s\(][ກຂຄງຈສຊຍດຕຖທນບປຜຝພຟມຢຣລວຫອຮ])\.[\u0E80-\u0EFF]/,
+    regexp: /(?<![\s\(“‘"][ກຂຄງຈສຊຍດຕຖທນບປຜຝພຟມຢຣລວຫອຮ])\.[\u0E80-\u0EFF]/,
   },
 ];
 
