@@ -108,6 +108,7 @@ const CHECKS = [
       "!**/00_source/*.md",
       "!**/001_machineraw/*.md",
       "!**/README.md",
+      "!**/tests/**/*.md",
       ...((negativeGlobPath && [`${negativeGlobPath}*.md`]) || []),
     ]);
     console.log(`Linting ${paths.length} files in "${globPath}"`);
