@@ -25,6 +25,15 @@ const CustomFormatting = {
         return -1;
       },
     },
+    {
+      name: "double reference code",
+      test: (line, params) => {
+        if (line && line.search(/\}\s*\{/) >= 0) {
+          return line.length - 1;
+        }
+        return -1;
+      },
+    },
   ]),
 };
 
