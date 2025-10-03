@@ -23,7 +23,11 @@ const customFormattingRules = [
   },
   {
     name: "no space before '{'",
-    regexp: /\S{/,
+    regexp: /[^\sthai]{/,
+  },
+  {
+    name: "double ref codes",
+    regexp: /\}\s*\{/,
   },
   {
     name: "missing space before opening curly quotes",
