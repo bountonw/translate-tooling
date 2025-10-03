@@ -48,6 +48,10 @@ const customFormattingRules = [
     },
   },
   {
+  name: "improper tone/circle order (tone before ໍ)",
+  regexp: /[່້໊໋]ໍ/,
+  },
+  {
     name: "missing space after punctuation",
     regexp: /[,!?][\u0E80-\u0EFF]/,
   },
