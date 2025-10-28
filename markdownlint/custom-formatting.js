@@ -23,7 +23,7 @@ const customFormattingRules = [
   },
   {
     name: "no space before '{'",
-    regexp: /[^\sthai]{/,
+    regexp: /(?<!(^|\s|\\emph|\\lw|\\p|\\thai)){/,
   },
   {
     name: "double ref codes",
