@@ -82,7 +82,8 @@ const CHECKS = [
     fileFilter: (filename) => {
       return (
         !checkMetadataForSetting(filename, "optional_reference_codes") &&
-        filename.search("/assets/") === -1 // Ignore assets files
+        filename.search("/assets/") === -1 && // Ignore assets files
+        filename.search("GC00_introduction_lo.md") === -1 // Ignore Lo GC intro
       );
     },
     customFormatting: "custom-formatting-reference-code.js",
