@@ -23,15 +23,15 @@ const customFormattingRules = [
   },
   {
     name: "no space before '{'",
-    regexp: /(?<!(^|\s|\\emph|\\lw|\\p|\\thai)){/,
+    regexp: /(?<!(^|\s|\\emph|\\lw|\\p|\\thai|\{\\;\})){(?!\\)/,
   },
   {
     name: "double ref codes",
-    regexp: /\}\s*\{/,
+    regexp: /(?<!;)\}\s*\{/,
   },
   {
     name: "missing space before opening curly quotes",
-    regexp: /[^\s“‘\(\—…][“‘]/,
+    regexp: /[^\s“‘\(\—…\}][“‘]/,
   },
   {
     name: "invalid space after opening curly quotes",
