@@ -6,6 +6,7 @@
 # ທີ່ຫ້າ is handled in a special rule
 
 ກະຈ່າຍ
+ໃຫຽ່
 ກະຕືຮືລົ້ນ
 ກຳໜົດ
 ກິບ
