@@ -21,7 +21,8 @@ export const readForbiddenTerms = (language) =>
       "utf-8"
     )
     .split("\n")
-    .filter((l) => l && l.charAt(0) !== "#");
+    .filter((l) => l && l.charAt(0) !== "#")
+    .map((l) => l.split("#")[0].trim());
 
 export const applyCustomFormattingRules =
   (customFormattingRules) => (params, onError) => {
