@@ -43,7 +43,7 @@ const customFormattingRules = [
   },
   {
     name: "missing space after closing curly quotes",
-    regexp: /(\w”[^\s<’”—\[\)…;]|(?<![a-z])’[^\s<”—\.\[\)…;](?!s))/,
+    regexp: /(\w”[^\s<’”—\[\)…;]|(?<![a-zA-Z])’[^\s<”—\.\[\)\{…;](?!s))/,
   },
   {
     name: "periods instead of ellipsis",
