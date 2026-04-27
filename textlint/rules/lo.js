@@ -1,9 +1,9 @@
-import { applyCustomFormattingRules, readForbiddenTerms } from "./helpers.js";
+import { createTextlintRule, readForbiddenTerms } from "../rule-factory.js";
 
-const customFormattingRules = [
+const ruleDefinitions = [
   {
     name: "forbidden term",
-    regexp: new RegExp(`${readForbiddenTerms("lao.txt").join("|")}`),
+    regexp: new RegExp(readForbiddenTerms("lao.txt").join("|")),
   },
   {
     name: "forbidden ຫນ",
@@ -31,25 +31,19 @@ const customFormattingRules = [
   },
   {
     name: "legacy AM vowel (ໍາ should be ຳ)",
-    test: (line) => {
-      if (!line) return -1;
-
+    test: (text) => {
+      if (!text) return -1;
       // Pattern to match Lao consonant + SARA AM (ໍ) + SARA AA (າ)
       // This is the legacy form that should be converted to standard form
       // Unicode ranges: Lao consonants (\u0E81-\u0EAE), SARA AM (\u0ECD), SARA AA (\u0EB2)
       const legacyAmPattern = /([\u0E81-\u0EAE])\u0ECD\u0EB2/;
-      const match = line.match(legacyAmPattern);
-
-      if (match) {
-        return line.indexOf(match[0]);
-      }
-
-      return -1;
+      const match = text.match(legacyAmPattern);
+      return match ? text.indexOf(match[0]) : -1;
     },
   },
   {
-  name: "improper tone/circle order (tone before ໍ)",
-  regexp: /[່້໊໋]ໍ/,
+    name: "improper tone/circle order (tone before ໍ)",
+    regexp: /[່້໊໋]ໍ/,
   },
   {
     name: "missing space after punctuation",
@@ -61,11 +55,4 @@ const customFormattingRules = [
   },
 ];
 
-const CustomFormatting = {
-  names: ["custom-formatting-lo"],
-  description: "Custom formatting (lo) rules",
-  tags: ["style"],
-  function: applyCustomFormattingRules(customFormattingRules),
-};
-
-export default CustomFormatting;
+export default createTextlintRule(ruleDefinitions);

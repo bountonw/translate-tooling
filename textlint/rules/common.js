@@ -1,41 +1,31 @@
-import { applyCustomFormattingRules } from "./helpers.js";
+import { createTextlintRule } from "../rule-factory.js";
 
-const customFormattingRules = [
+const ruleDefinitions = [
   {
     name: "invalid spacing",
-    test: (line) => {
-      const doubleSpaceIndex = line ? line.search(/\S\s{2,}($|\S)/) : -1;
-      if (doubleSpaceIndex !== -1) {
-        const isAllowedDoubleSpaceForPoetry =
-          line.search(/>\s/) !== -1 &&
-          line
-            .replace(/^>/, "")
-            .trim()
-            .search(/\S\s{2,}($|\S)/) === -1;
-        return isAllowedDoubleSpaceForPoetry ? -1 : doubleSpaceIndex;
-      }
-      return -1;
+    test: (text, { isInBlockquote }) => {
+      if (!text) return -1;
+      const index = text.search(/\S\s{2,}($|\S)/);
+      if (index === -1) return -1;
+      if (isInBlockquote) return -1;
+      return index;
     },
   },
   {
     name: "non-breaking whitespace",
-    regexp: / /,
-  },
-  {
-    name: "no space before '{'",
-    regexp: /(?<!(^|\s|\\emph|\\lw|\\p|\\thai|nbsp|\{\\;\}|\{\\:\})){(?!\\)/,
-  },
-  {
-    name: "double ref codes",
-    regexp: /(?<!;|:)\}\s*\{/,
+    regexp: /\u00A0/,
   },
   {
     name: "missing space before opening curly quotes",
-    regexp: /[^\s“‘\(\—…\}][“‘]/,
+    regexp: /[^\s“\u2018\(\—…\}][“‘]/,
   },
   {
     name: "invalid space after opening curly quotes",
     regexp: /[“‘]\s/,
+  },
+  {
+    name: "invalid space before closing curly quotes",
+    regexp: /\s[”’]/,
   },
   {
     name: "invalid space before closing curly quotes",
@@ -63,11 +53,4 @@ const customFormattingRules = [
   },
 ];
 
-const CustomFormatting = {
-  names: ["custom-formatting"],
-  description: "Custom formatting rules",
-  tags: ["style"],
-  function: applyCustomFormattingRules(customFormattingRules),
-};
-
-export default CustomFormatting;
+export default createTextlintRule(ruleDefinitions);
