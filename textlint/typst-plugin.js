@@ -121,9 +121,20 @@ function parseInline(text, start, end, lineOffsets) {
       flushStr(pos);
       const close = text.indexOf("```", pos + 3);
       const blockEnd = close === -1 ? end : close + 3;
-      nodes.push(
-        mkNode("CodeBlock", text.slice(pos, blockEnd), pos, blockEnd, lineOffsets, {})
-      );
+      // Poetry blocks (```poetry) are prose, not code: parse their content so
+      // that text rules (forbidden terms, spacing, EGW references, etc.) apply.
+      // Leading-whitespace indentation won't trigger "invalid spacing" because
+      // that rule requires a non-space character before the run of spaces.
+      const langMatch = /^```([a-zA-Z]+)\n/.exec(text.slice(pos, blockEnd));
+      if (langMatch && langMatch[1] === "poetry") {
+        const contentStart = pos + langMatch[0].length;
+        const contentEnd = blockEnd - 3; // trim closing ```
+        nodes.push(...parseInline(text, contentStart, contentEnd, lineOffsets));
+      } else {
+        nodes.push(
+          mkNode("CodeBlock", text.slice(pos, blockEnd), pos, blockEnd, lineOffsets, {})
+        );
+      }
       pos = blockEnd;
       strStart = pos;
       continue;
@@ -276,9 +287,23 @@ function parse(text) {
       const fenceStart = pos + indent;
       const closePos = text.indexOf("```", fenceStart + 3);
       const codeEnd = closePos === -1 ? len : closePos + 3;
-      children.push(
-        mkNode("CodeBlock", text.slice(pos, codeEnd), pos, codeEnd, lineOffsets, {})
-      );
+      // Poetry blocks at document level: parse as a BlockQuote so prose rules
+      // apply (with isInBlockquote=true, suppressing the spacing rule).
+      const langMatch = /^```([a-zA-Z]+)\n/.exec(text.slice(fenceStart, codeEnd));
+      if (langMatch && langMatch[1] === "poetry") {
+        const contentStart = fenceStart + langMatch[0].length;
+        const contentEnd = codeEnd - 3;
+        const innerNodes = parseInline(text, contentStart, contentEnd, lineOffsets);
+        children.push(
+          mkNode("BlockQuote", text.slice(pos, codeEnd), pos, codeEnd, lineOffsets, {
+            children: innerNodes,
+          })
+        );
+      } else {
+        children.push(
+          mkNode("CodeBlock", text.slice(pos, codeEnd), pos, codeEnd, lineOffsets, {})
+        );
+      }
       pos = codeEnd;
       if (pos < len && text[pos] === "\n") pos++;
       continue;

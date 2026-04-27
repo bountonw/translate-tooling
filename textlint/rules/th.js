@@ -15,7 +15,7 @@ const ruleDefinitions = [
   },
   {
     name: "space around ellipsis",
-    regexp: /(?:[^‘’”]\s+…|…\s+[^‘’”])/,
+    regexp: /(?:[^’’”][ \t]+…|…[ \t]+[^’’”])/,
   },
 ];
 

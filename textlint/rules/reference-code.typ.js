@@ -25,7 +25,7 @@ export default (context) => {
   return {
     [Syntax.Document](docNode) {
       const children = docNode.children || [];
-      children.forEach((child) => {
+      children.forEach((child, idx) => {
         if (child.type !== Syntax.Paragraph) return;
 
         // Skip Typst comment-line annotations (e.g. "// {PP 746.2}").
@@ -40,11 +40,21 @@ export default (context) => {
           return;
 
         // #EGW[...] is parsed as a Marked::FuncCall child of the Paragraph node.
-        const hasRefCode = (child.children || []).some(
-          (n) => n.type === "Marked::FuncCall" && getSource(n).startsWith("EGW[")
-        );
+        const hasEGW = (nodes) =>
+          (nodes || []).some(
+            (n) => n.type === "Marked::FuncCall" && getSource(n).startsWith("EGW[")
+          );
 
-        if (!hasRefCode) {
+        if (!hasEGW(child.children)) {
+          // A paragraph may introduce a poetry blockquote whose last line carries
+          // the EGW reference (e.g. `#quote(block:true)[```poetry\n...\n```]`).
+          // After the parser fix the EGW call surfaces as a Marked::FuncCall
+          // child of the following BlockQuote, so accept that as coverage.
+          const next = children[idx + 1];
+          if (next && next.type === "BlockQuote" && hasEGW(next.children)) {
+            return;
+          }
+
           const source = getSource(child);
           report(
             child,
