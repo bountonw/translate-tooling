@@ -14,6 +14,10 @@ const ruleDefinitions = [
     regexp: /[◌ฺฃฅ]/,
   },
   {
+    name: "Lao character in Thai text",
+    regexp: /[\u0E80-\u0EFF]/,
+  },
+  {
     name: "space around ellipsis",
     regexp: /(?:[^’’”][ \t]+…|…[ \t]+[^’’”])/,
   },
