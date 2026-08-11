@@ -57,6 +57,8 @@ const BASE_EXCLUDES = [
   "!**/assets/**",
   "!**/[0-9][0-9]_assets/**", // numbered-stage assets dirs (e.g. 04_assets)
   "!**/AA/**", // TODO: fix up the AA errors and re-enable this check for AA
+  "!**/CLAUDE.md",
+  "!**/.claude/**",
 ];
 
 const buildGlobPatterns = (globPath, negativeGlobPath, fileTypes) => {
