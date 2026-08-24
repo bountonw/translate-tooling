@@ -1,4 +1,7 @@
 # List of common typos and misspellings of Lao words to be flagged.
+# Each row gives the WRONG spelling first, then the correct one after the separator.
+# The linter reads only the wrong form; the correction is there for the reader.
+# Note that common-spelling.txt uses the opposite order, correct form first.
 
 # ທີ່ສອງ is handled in a special rule to avoid incorrectly flagging valid words as forbidden
 # ທີ່ສາມ is handled in a special rule
@@ -132,6 +135,7 @@
 ພະແໜກ # ພະແນກ
 ພາຍຸ # ພະຍຸ
 ພິພິດທະພັນ # ພິພິທະພັນ
+ພຸ້ງ # ພຸ່ງ
 ພົວພົນ # ພົວພັນ
 ຟັ້າ # ຟ້າ
 ຟາຣິຊາຍ # ຟາຣີຊາຍ
